@@ -22,23 +22,27 @@ jobs:
     - uses: actions-ecosystem/action-get-latest-tag@v1
       id: get-latest-tag
 
-    - name: test2
-      run: echo '${{ steps.get-latest-tag.outputs.tag }}'
+    - name: get value in file
+      id: version-file
+      run: |
+        echo "VERSIONFILE=$(cat version)" >> $GITHUB_ENV
+      
 
     - name: Set env
-      run: echo "TAG=1.1.0" > $GITHUB_ENV
-      #run:  git tag | sort -V | tail -1 > $GITHUB_ENV
+      run: echo "TAG=${{ steps.get-latest-tag.outputs.tag }}" >> $GITHUB_ENV
 
     - name: Test
       run: |
         echo $TAG
         echo ${{ env.TAG }}
+        echo $VERSIONFILE
 
     - name: Crear archivo version
       run: |
         echo '${{ env.TAG }}' > version
 
     - name: Commit files 
+      if: $${{ steps.get-latest-tag.outputs.tag }} != env.VERSIONFILE }}
       run: |
         git config --local user.name "Francisco Fuentes"
         git config --local user.email "contacto@francisco-fuentes.cl"
