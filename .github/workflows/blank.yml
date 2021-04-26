@@ -40,7 +40,6 @@ jobs:
     - name: Crear archivo version
       run: |
         echo '${{ env.TAG }}' > version
-        echo != 
 
     - name: Commit files 
       if:  $TAG != $VERSIONFILE
