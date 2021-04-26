@@ -23,7 +23,7 @@ jobs:
       id: get-latest-tag
 
     - name: test2
-      run: echo '{{ steps.get-latest-tag.outputs.tag }}'
+      run: echo '${{ steps.get-latest-tag.outputs.tag }}'
 
     - name: Set env
       run: echo "TAG=1.1.0" > $GITHUB_ENV
