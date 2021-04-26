@@ -24,6 +24,7 @@ jobs:
     - name: Commit files 
       run: |
         git config --local user.name "Francisco Fuentes"
+        git config --local user.email "contacto@francisco-fuentes.cl"
         git add version
         git commit -m "Actualizacion de version"
     - name: Push changes
