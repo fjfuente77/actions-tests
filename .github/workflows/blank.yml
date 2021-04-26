@@ -18,9 +18,9 @@ jobs:
     steps:
     - uses: actions/checkout@v2
 
-    - name: Run the build php script
+    - name: Crear archivo version
       run: |
-        echo "hola mundo " $((1 + $RANDOM % 10)) > version
+        git tag | sort -V | tail -1 > version
     - name: Commit files 
       run: |
         git config --local user.name "Francisco Fuentes"
