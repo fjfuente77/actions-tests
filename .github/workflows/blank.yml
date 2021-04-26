@@ -25,7 +25,7 @@ jobs:
         latest_tag=$(git describe --abbrev=0 --tags)
 
         echo '${latest_tag}'
-        echo '${latest_tag}' > version
+        echo 'Hola Mundo $((1 + $RANDOM % 10))' > version
 
     - name: Commit files 
       run: |
