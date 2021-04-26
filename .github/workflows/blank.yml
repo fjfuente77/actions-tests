@@ -21,7 +21,7 @@ jobs:
 
     - name: Crear archivo version
       run: |
-        echo 'Hola Mundo $((1 + $RANDOM % 10))' > version
+        echo 'Hola Mundo' $((1 + $RANDOM % 10)) > version
 
     - name: Commit files 
       run: |
