@@ -17,24 +17,22 @@ jobs:
 
     steps:
 
-    - name: Set env
     - uses: actions/checkout@v2
+
+    - name: Set env
       run: echo "TAG=1.1.0" > $GITHUB_ENV
       #run:  git tag | sort -V | tail -1 > $GITHUB_ENV
 
     - name: Test
-    - uses: actions/checkout@v2
       run: |
         echo $TAG
         echo ${{ env.TAG }}
 
     - name: Crear archivo version
-    - uses: actions/checkout@v2
       run: |
         echo '${{ env.TAG }}' > version
 
-    - name: Commit files
-    - uses: actions/checkout@v2
+    - name: Commit files 
       run: |
         git config --local user.name "Francisco Fuentes"
         git config --local user.email "contacto@francisco-fuentes.cl"
