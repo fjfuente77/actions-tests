@@ -42,7 +42,7 @@ jobs:
         echo '${{ env.TAG }}' > version
 
     - name: Commit files 
-      if:  $TAG != $VERSIONFILE
+      if: $${{ env.TAG }} ! $${{ env.VERSIONFILE }}
       run: |
         git config --local user.name "Francisco Fuentes"
         git config --local user.email "contacto@francisco-fuentes.cl"
@@ -50,7 +50,7 @@ jobs:
         git commit -m "Actualizacion de version"
   
     - name: Push changes
-      if: $TAG != $VERSIONFILE
+      if: $${{ env.TAG }} ! $${{ env.VERSIONFILE }}
       uses: ad-m/github-push-action@master
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
