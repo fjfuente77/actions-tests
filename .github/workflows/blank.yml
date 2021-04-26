@@ -20,7 +20,7 @@ jobs:
 
     - name: Run the build php script
       run: |
-        echo "hola mundo" > version
+        echo "hola mundo " $((1 + $RANDOM % 10)) > version
     - name: Commit files 
       run: |
         git config --local user.name "Francisco Fuentes"
