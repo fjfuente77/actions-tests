@@ -20,7 +20,8 @@ jobs:
 
     - name: Crear archivo version
       run: |
-        git tag | sort -V | tail -1 > version
+        B=$(git tag | sort -V | tail -1)
+        echo $B > version
     - name: Commit files 
       run: |
         git config --local user.name "Francisco Fuentes"
