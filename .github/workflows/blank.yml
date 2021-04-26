@@ -17,19 +17,14 @@ jobs:
 
     steps:
 
-    - uses: actions-ecosystem/action-release-label@v1
-      id: release-label
-      if: ${{ github.event.pull_request.merged == true }}
-
-    - uses: actions-ecosystem/action-get-latest-tag@v1
-      id: get-latest-tag
-      if: ${{ steps.release-label.outputs.level != null }}
 
     - uses: actions/checkout@v2
     - name: Crear archivo version
       run: |
-        echo '${{ steps.get-latest-tag.outputs.tag }}'
-        echo '${{ steps.get-latest-tag.outputs.tag }}' > version
+        latest_tag=$(git describe --abbrev=0 --tags)
+
+        echo '${latest_tag}'
+        echo '${latest_tag}' > version
 
     - name: Commit files 
       run: |
