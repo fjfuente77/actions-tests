@@ -16,12 +16,17 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v2
 
+    - uses: actions-ecosystem/action-get-latest-tag@v1
+      id: get-latest-tag
+      if: ${{ steps.release-label.outputs.level != null }}
+
+    - uses: actions/checkout@v2
     - name: Crear archivo version
       run: |
-        B=$(git tag | sort -V | tail -1)
-        echo $B > version
+        echo '${{ steps.get-latest-tag.outputs.tag }}'
+        echo '${{ steps.get-latest-tag.outputs.tag }}' > version
+
     - name: Commit files 
       run: |
         git config --local user.name "Francisco Fuentes"
